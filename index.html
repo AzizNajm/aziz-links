@@ -3,18 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موقعي الشخصي</title>
+    <title>azizhijlah </title>
+    <meta name="description" content="AZEEZ - Gamer & Streamer | All my links in one place">
+
+<meta property="og:title" content="AZEEZ">
+<meta property="og:description" content="Gamer & Streamer | Instagram, Kick, Snapchat, WhatsApp, VSCO & PayPal">
+<meta property="og:image" content="https://aziznajm.github.io/aziz-links/profile.jpg">
+<meta property="og:url" content="https://aziznajm.github.io/aziz-links/">
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+   <link rel="icon" type="image/jpeg" href="profile.jpg">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
+
+<script>
+const glow = document.querySelector(".mouse-glow");
+
+document.addEventListener("mousemove", (e) => {
+    glow.style.left = e.clientX + "px";
+    glow.style.top = e.clientY + "px";
+});
+</script>
+
+<script>
+const card = document.querySelector(".container");
+
+card.addEventListener("mousemove", (e) => {
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = (y - centerY) / 40;
+    const rotateY = (centerX - x) / 40;
+
+    card.style.transform =
+        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+card.addEventListener("mouseleave", () => {
+    card.style.transform =
+        "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+});
+</script>
 
 <body>
 
+    <div class="mouse-glow"></div>
+
 <div class="container">
+
+    <div class="top-bar">
+    <span class="online-status">
+        <span class="online-dot"></span>
+        Online
+    </span>
+
+    <button class="share-btn" onclick="shareSite()">
+        <i class="fa-solid fa-share-nodes"></i>
+    </button>
+</div>
 
     <img src="profile.jpg" class="profile-img">
 
-    <h1>AZEEZ</h1>
+    <h1>Aziz</h1>
 
     <p class="bio">
         Abd AL Aziz Abu Hijleh
@@ -55,9 +112,26 @@
     <i class="fa-brands fa-paypal"></i>
     PayPal
 </a>
-
+<div class="footer">
+    <p>© 2026 AZEEZ</p>
+    <span>Made with ♥ in Jordan 🇯🇴</span>
+</div>
 </div>
 
 </body>
 </html>
 
+<script>
+function shareSite() {
+    if (navigator.share) {
+        navigator.share({
+            title: "AZEEZ",
+            text: "Check out my links",
+            url: window.location.href
+        });
+    } else {
+        navigator.clipboard.writeText(window.location.href);
+        alert("Link copied!");
+    }
+}
+</script>
